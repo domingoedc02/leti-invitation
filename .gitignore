@@ -1,0 +1,13 @@
+node_modules
+/build
+/.svelte-kit
+/static/img
+/static/og-image.jpg
+/static/apple-touch-icon.png
+/static/icon-192.png
+/static/icon-512.png
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="A bunny with a heart">
+	<rect width="64" height="64" rx="14" fill="#FADCE0" />
+	<!-- Ears, with a soft pink inner. -->
+	<g fill="#FBF4EC" stroke="#E9C9B8" stroke-width="1.5">
+		<ellipse cx="24" cy="22" rx="5" ry="13" transform="rotate(-11 24 22)" />
+		<ellipse cx="40" cy="22" rx="5" ry="13" transform="rotate(11 40 22)" />
+	</g>
+	<g fill="#F4A6B8">
+		<ellipse cx="24" cy="23" rx="2.4" ry="8.5" transform="rotate(-11 24 23)" />
+		<ellipse cx="40" cy="23" rx="2.4" ry="8.5" transform="rotate(11 40 23)" />
+	</g>
+	<!-- Head. -->
+	<circle cx="32" cy="41" r="14" fill="#FBF4EC" stroke="#E9C9B8" stroke-width="1.5" />
+	<!-- Eyes and nose. -->
+	<circle cx="26.5" cy="39" r="2" fill="#4A3038" />
+	<circle cx="37.5" cy="39" r="2" fill="#4A3038" />
+	<path d="M32 44.2 l-2.6 2.6 h5.2 z" fill="#E9789A" />
+	<!-- Cheeks. -->
+	<circle cx="21.5" cy="44" r="3" fill="#F9C6D0" opacity="0.85" />
+	<circle cx="42.5" cy="44" r="3" fill="#F9C6D0" opacity="0.85" />
+	<!-- A little heart tucked beside the ear. -->
+	<path
+		d="M51 15 c1.8 -2 5 -0.8 5 1.9 c0 2.6 -3.4 4.7 -5 6.1 c-1.6 -1.4 -5 -3.5 -5 -6.1 c0 -2.7 3.2 -3.9 5 -1.9 z"
+		fill="#D65C7F"
+	/>
+</svg>

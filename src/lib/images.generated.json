@@ -1,0 +1,83 @@
+{
+	"images": {
+		"gate-bg": {
+			"width": 736,
+			"height": 1308,
+			"widths": [
+				480,
+				736
+			],
+			"ext": "jpg",
+			"alpha": false
+		},
+		"hero-bg": {
+			"width": 675,
+			"height": 1200,
+			"widths": [
+				480,
+				675
+			],
+			"ext": "jpg",
+			"alpha": false
+		},
+		"wash-bg": {
+			"width": 675,
+			"height": 1200,
+			"widths": [
+				480,
+				675
+			],
+			"ext": "jpg",
+			"alpha": false
+		},
+		"floral-crown": {
+			"width": 675,
+			"height": 1200,
+			"widths": [
+				480,
+				675
+			],
+			"ext": "png",
+			"alpha": true
+		},
+		"floral-rail": {
+			"width": 380,
+			"height": 675,
+			"widths": [
+				200,
+				380
+			],
+			"ext": "png",
+			"alpha": true
+		},
+		"bunny": {
+			"width": 675,
+			"height": 1200,
+			"widths": [
+				480,
+				675
+			],
+			"ext": "png",
+			"alpha": true
+		},
+		"bunny-sit": {
+			"width": 235,
+			"height": 275,
+			"widths": [
+				235
+			],
+			"ext": "png",
+			"alpha": true
+		},
+		"leti": {
+			"width": 1080,
+			"height": 1260,
+			"widths": [
+				640,
+				1080
+			],
+			"ext": "png",
+			"alpha": true
+		}
+	}
+}

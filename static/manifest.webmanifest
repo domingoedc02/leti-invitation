@@ -1,0 +1,16 @@
+{
+	"name": "Leti's 3rd Birthday",
+	"short_name": "Leti turns 3",
+	"description": "An invitation to Leti's 3rd birthday party.",
+	"start_url": "./",
+	"scope": "./",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#FDF4EE",
+	"theme_color": "#FADCE0",
+	"icons": [
+		{ "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+		{ "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+		{ "src": "./apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+	]
+}

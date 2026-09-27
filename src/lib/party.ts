@@ -34,7 +34,7 @@ export function ordinal(n: number): string {
 const childName = 'Leticia Khloe';
 /** What the family calls her. Used only on the "You're Invited" screen, in
  * "to Leti's 3rd Birthday". */
-const nickname = 'Leti';
+const nickname = 'Leticia';
 const age = 3;
 
 export const party = {
@@ -60,9 +60,9 @@ export const party = {
 
 	/** PLACEHOLDER - the venue. `mapsQuery` is what gets searched on Google Maps. */
 	venue: {
-		name: 'Rilly Banquet Fushimi',
-		addressLines: ['2 CHome-13-25 3F', 'Nishiki, Naka Ward, Nagoya, Aichi 460-0003'],
-		mapsQuery: 'Rilly Banquet Fushimi, Nagoya'
+		name: 'Panalosa Japan, Inc.',
+		addressLines: ['Hanaguruma Bldg', 'South 3A 5-16-17 Meieki, Nakamura-Ku, Nagoya Shi, Aichi Ken 450-0002'],
+		mapsQuery: 'Panalosa Japan, Inc., Hanaguruma Bldg, South 3A 5-16-17 Meieki, Nakamura-Ku, Nagoya Shi, Aichi Ken 450-0002'
 	},
 
 	/** PLACEHOLDER - who is inviting. Shown at the end of the invitation. */
@@ -90,14 +90,14 @@ export const party = {
 	 * Add or remove rows freely - the timeline draws however many there are.
 	 */
 	program: [
-		{ from: '1:00', to: '1:30', title: 'Arrival & Registration', note: 'Find your seats and say hello' },
-		{ from: '1:30', to: '2:00', title: 'Opening Ceremony', note: 'Welcome remarks and a prayer' },
-		{ from: '2:00', to: '2:30', title: 'Leti’s Grand Entrance' },
-		{ from: '2:30', to: '3:15', title: 'Games & Prizes', note: 'For the little guests' },
+		{ from: '1:00', to: '1:30', title: 'Arrival of guest', note: 'Find your seats and say hello' },
+		{ from: '1:30', to: '2:00', title: 'Grand entrance & Opening ceremony', note: 'Welcome remarks and a prayer' },
+		{ from: '2:00', to: '2:30', title: 'Cake ceremony' },
+		{ from: '2:30', to: '3:15', title: 'Eat time'},
 		{ from: '3:15', to: '3:45', title: 'Merienda' },
-		{ from: '3:45', to: '4:15', title: 'Cake & Birthday Wish', note: 'Blowing of the candles' },
-		{ from: '4:15', to: '4:45', title: 'Photo Opportunity' },
-		{ from: '4:45', to: '5:00', title: 'Thank You & Loot Bags' }
+		{ from: '3:45', to: '4:15', title: 'Fun activities & games'},
+		{ from: '4:15', to: '4:45', title: 'Magic' },
+		{ from: '4:45', to: '5:00', title: 'Giving of Souvenirs' }
 	] satisfies ProgramSlot[],
 
 	/** A short line under the big "3". PLACEHOLDER. */

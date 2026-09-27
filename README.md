@@ -26,7 +26,6 @@ Nothing else needs touching. Every made-up value is marked `PLACEHOLDER`:
 | 77 | `programNote` | The one line under the programme heading |
 | 92–101 | `program` | The running order of the afternoon — see below |
 | 104 | `tagline` | The short line under the big “3” |
-| 107 | `siteUrl` | Your real domain — the link-preview image is built from it |
 
 Below those, from line 123, is a `text` block holding **every word the invitation says** —
 see [section 3](#3-reword-anything-on-the-page).
@@ -148,8 +147,18 @@ alone — `vercel.json` already says all of it.
 
 No environment variables are needed. There are no secrets and no API keys.
 
-**After the first deploy,** set `siteUrl` in `src/lib/party.ts` to the live domain and
-redeploy, so the link preview in messengers points at the right image.
+`siteUrl` in `src/lib/party.ts` must be the live domain (currently
+`https://invite.enlinka.co`), or the link preview in messengers has no image.
+
+### The link preview
+
+Sharing the link shows the title "You’re invited to Leticia’s 3rd Birthday" (`shareTitle`)
+over a card image, `static/og-image.jpg`. The card has the same words drawn on it
+(`shareCardHeadline`, `shareCardLine`, `shareCardDate`), because Instagram DMs often show
+only the picture. The build draws it, so run `npm run images` after rewording those lines.
+
+Messenger and Facebook cache previews. After changing any of it, paste the URL into
+<https://developers.facebook.com/tools/debug/> and press **Scrape Again**.
 
 ### Checking the deployment
 

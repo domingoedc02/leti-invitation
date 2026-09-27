@@ -103,8 +103,8 @@ export const party = {
 	/** A short line under the big "3". PLACEHOLDER. */
 	tagline: 'is turning three!',
 
-	/** Used for the share-card link preview. PLACEHOLDER - your real domain. */
-	siteUrl: 'https://leti.example.com',
+	/** Used for the share-card link preview. Must be the real, live domain. */
+	siteUrl: 'https://invite.enlinka.co',
 
 	/**
 	 * ─── EVERY WORD THE INVITATION SAYS ──────────────────────────────────────────
@@ -163,6 +163,15 @@ export const party = {
 		petBunnyLabel: 'Pet the bunny',
 		petBunnyReaction: 'The bunny does a happy hop!',
 
+		/* The link preview in Messenger, Instagram and the like. */
+		/** The bold title under the preview. */
+		shareTitle: `You’re invited to ${nickname}’s ${ordinal(age)} Birthday`,
+		/** The three lines drawn onto the preview image itself, by scripts/optimize-images.mjs.
+		 * Run `npm run images` after changing them. */
+		shareCardHeadline: 'You’re Invited',
+		shareCardLine: `to ${nickname}’s ${ordinal(age)} Birthday`,
+		shareCardDate: 'Sunday, October 11',
+
 		/** Describes the picture on the card that appears when the link is shared. */
 		shareImageAlt: `${childName} with flowers and a little bunny`
 	}
@@ -180,7 +189,8 @@ export const partyTitle = `${party.childName}'s ${ordinal(party.age)} Birthday`;
  * together, which is why it lives out here rather than in `text` above - an object
  * cannot quote its own fields while it is being built.
  */
-export const shareDescription = `${party.childName} ${party.tagline} Join us on ${party.dateLabel} at ${party.venue.name}.`;
+// The venue name may already end in a full stop ("Inc."), so don't add a second one.
+export const shareDescription = `${party.childName} ${party.tagline} Join us on ${party.dateLabel} at ${party.venue.name.replace(/\.?$/, '.')}`;
 
 export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
 	party.venue.mapsQuery

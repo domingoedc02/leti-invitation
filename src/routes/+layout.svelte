@@ -27,7 +27,8 @@
 	<!-- Invitations get shared in messengers, so the link preview matters as much
 	     as the page itself. -->
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content={partyTitle} />
+	<meta property="og:site_name" content={partyTitle} />
+	<meta property="og:title" content={party.text.shareTitle} />
 	<meta property="og:description" content={shareDescription} />
 	<meta property="og:image" content={ogImage} />
 	<meta property="og:image:width" content="1200" />
@@ -35,6 +36,10 @@
 	<meta property="og:image:alt" content={party.text.shareImageAlt} />
 	<meta property="og:url" content={party.siteUrl} />
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={party.text.shareTitle} />
+	<meta name="twitter:description" content={shareDescription} />
+	<meta name="twitter:image" content={ogImage} />
+	<meta name="twitter:image:alt" content={party.text.shareImageAlt} />
 </svelte:head>
 
 <SceneCanvas />

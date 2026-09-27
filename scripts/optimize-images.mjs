@@ -7,10 +7,13 @@
  *
  * Run automatically by `npm run build`, or on its own with `npm run images`.
  */
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import opentype from 'opentype.js';
+// Plain TS with only erasable syntax, which Node (>=22.18) loads by stripping the types.
+import { party } from '../src/lib/party.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const src = join(root, 'assets', 'source');
@@ -114,10 +117,65 @@ async function buildDerivatives(list, prefix = '') {
 	}
 }
 
+/** A font from node_modules, loaded with opentype.js (which reads WOFF directly). */
+async function loadFont(pkg, file) {
+	const buf = await readFile(join(root, 'node_modules', '@fontsource', pkg, 'files', file));
+	return opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
+}
+
+/**
+ * SVG path data from opentype.js path commands. Written out by hand because
+ * opentype.js 2.0's own toPathData() emits NaN for some curves (it broke "Leticia"
+ * off after the "L"), and librsvg stops drawing a path at the first bad number.
+ */
+function pathData(commands) {
+	const n = (v) => v.toFixed(2);
+	return commands
+		.map((c) => {
+			if (c.type === 'M' || c.type === 'L') return `${c.type}${n(c.x)} ${n(c.y)}`;
+			if (c.type === 'Q') return `Q${n(c.x1)} ${n(c.y1)} ${n(c.x)} ${n(c.y)}`;
+			if (c.type === 'C') return `C${n(c.x1)} ${n(c.y1)} ${n(c.x2)} ${n(c.y2)} ${n(c.x)} ${n(c.y)}`;
+			return 'Z';
+		})
+		.join('');
+}
+
+/**
+ * The card's wording as an SVG overlay. Each line is converted to outline paths rather
+ * than set as <text>: librsvg (what sharp renders SVG with) only sees system fonts, so
+ * <text> would come out in whatever serif the build machine has. Paths look the same
+ * everywhere, in the same faces the site uses.
+ */
+async function ogText(W, H) {
+	const script = await loadFont('parisienne', 'parisienne-latin-400-normal.woff');
+	const display = await loadFont('playfair-display', 'playfair-display-latin-600-normal.woff');
+
+	// The clear middle of the card, between the bunny and Leti.
+	const cx = 430;
+	const lines = [
+		{ font: script, text: party.text.shareCardHeadline, size: 96, y: 285, fill: '#d65c7f' },
+		{ font: display, text: party.text.shareCardLine, size: 42, y: 355, fill: '#5a2a3c' },
+		{ font: display, text: party.text.shareCardDate, size: 26, y: 408, fill: '#7d5062' }
+	];
+	const paths = lines.map(({ font, text, size, y, fill }) => {
+		const x = cx - font.getAdvanceWidth(text, size) / 2;
+		const d = pathData(font.getPath(text, x, y, size).commands);
+		return `<path d="${d}" fill="${fill}"/>`;
+	});
+
+	// A soft white glow under the words so they stay legible over the florals.
+	return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+	<defs><radialGradient id="g"><stop offset="0" stop-color="#fff" stop-opacity=".92"/><stop offset=".6" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+	<ellipse cx="${cx}" cy="330" rx="320" ry="160" fill="url(#g)"/>
+	${paths.join('\n\t')}
+</svg>`);
+}
+
 /**
  * 1200x630 social share card: watercolour wash, florals across the top, Leti on the
- * right, the bunny bottom-left. Deliberately image-only -- text rendered through
- * sharp depends on system fonts, so the title comes from og:title instead.
+ * right, the bunny bottom-left, and "You're Invited to Leticia's 3rd Birthday" in the
+ * middle. The words are on the image as well as in og:title because some apps
+ * (Instagram DMs especially) show only the picture.
  */
 async function buildOgCard() {
 	const W = 1200;
@@ -148,7 +206,8 @@ async function buildOgCard() {
 		.composite([
 			{ input: florals, blend: 'over' },
 			{ input: leti, left: W - letiW - 70, top: H - letiH },
-			{ input: bunny, left: 60, top: H - bunnyH - 10 }
+			{ input: bunny, left: 60, top: H - bunnyH - 10 },
+			{ input: await ogText(W, H) }
 		])
 		.jpeg({ quality: 84, mozjpeg: true })
 		.toBuffer();

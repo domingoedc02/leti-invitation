@@ -54,15 +54,20 @@ export const party = {
 	endsAt: '2026-10-11T17:00:00+09:00',
 
 	/** PLACEHOLDER - how the date and time are written out on the invitation. */
-	dateLabel: 'Sunday, the Eleventh of October',
-	yearLabel: 'Two Thousand Twenty-Six',
-	timeLabel: 'One o’clock in the afternoon',
+	dateLabel: 'Sunday, October 11',
+	yearLabel: '2026',
+	timeLabel: '1:00 PM',
 
 	/** PLACEHOLDER - the venue. `mapsQuery` is what gets searched on Google Maps. */
 	venue: {
 		name: 'Panalosa Japan, Inc.',
 		addressLines: ['Hanaguruma Bldg', 'South 3A 5-16-17 Meieki, Nakamura-Ku, Nagoya Shi, Aichi Ken 450-0002'],
-		mapsQuery: 'Panalosa Japan, Inc., Hanaguruma Bldg, South 3A 5-16-17 Meieki, Nakamura-Ku, Nagoya Shi, Aichi Ken 450-0002'
+		mapsQuery: 'Panalosa Japan, Inc., Hanaguruma Bldg, South 3A 5-16-17 Meieki, Nakamura-Ku, Nagoya Shi, Aichi Ken 450-0002',
+		/** Getting there, shown under the address. Add or remove rows freely. */
+		notes: [
+			{ label: 'Parking', text: 'Coin parking' },
+			{ label: 'Train', text: '10 minutes’ walk from Nagoya Station' }
+		]
 	},
 
 	/** PLACEHOLDER - who is inviting. Shown at the end of the invitation. */
@@ -92,12 +97,11 @@ export const party = {
 	program: [
 		{ from: '1:00', to: '1:30', title: 'Arrival of guest', note: 'Find your seats and say hello' },
 		{ from: '1:30', to: '2:00', title: 'Grand entrance & Opening ceremony', note: 'Welcome remarks and a prayer' },
-		{ from: '2:00', to: '2:30', title: 'Cake ceremony' },
-		{ from: '2:30', to: '3:15', title: 'Eat time'},
-		{ from: '3:15', to: '3:45', title: 'Merienda' },
-		{ from: '3:45', to: '4:15', title: 'Fun activities & games'},
-		{ from: '4:15', to: '4:45', title: 'Magic' },
-		{ from: '4:45', to: '5:00', title: 'Giving of Souvenirs' }
+		{ from: '2:00', to: '2:30', title: 'Cake ceremony & Picture Taking' },
+		{ from: '2:30', to: '3:30', title: 'Eat time'},
+		{ from: '3:30', to: '4:30', title: 'Fun activities & games'},
+		{ from: '4:30', to: '5:30', title: 'Magic' },
+		{ from: '5:30', to: '6:00', title: 'Giving of Souvenirs' }
 	] satisfies ProgramSlot[],
 
 	/** A short line under the big "3". PLACEHOLDER. */

@@ -56,6 +56,11 @@
 				{#each party.venue.addressLines as line (line)}
 					<span class="soft">{line}</span>
 				{/each}
+				<ul class="notes">
+					{#each party.venue.notes as note (note.label)}
+						<li><span class="note-label">{note.label}</span> {note.text}</li>
+					{/each}
+				</ul>
 			</dd>
 		</div>
 	</dl>
@@ -149,6 +154,28 @@
 	.soft {
 		color: var(--ink-soft);
 		font-size: var(--step-0);
+	}
+
+	/* Getting-there notes, set off from the address by a hairline. */
+	.notes {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2em;
+		margin: var(--space-s) auto 0;
+		padding: var(--space-s) 0 0;
+		list-style: none;
+		border-top: 1px solid var(--blush);
+		color: var(--ink-soft);
+		font-size: var(--step--1);
+	}
+
+	.note-label {
+		font-weight: 600;
+		color: var(--rose-ink);
+	}
+
+	.note-label::after {
+		content: ' ·';
 	}
 
 	.actions {
